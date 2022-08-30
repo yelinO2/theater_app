@@ -57,8 +57,11 @@ class UpcomigMovies extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ModifiedText(
-                          text: upcoming[index]['title'] ?? 'loading',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ModifiedText(
+                            text: upcoming[index]['title'] ?? 'loading',
+                          ),
                         )
                       ],
                     ),

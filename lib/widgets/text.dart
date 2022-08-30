@@ -13,7 +13,7 @@ class ModifiedText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.breeSerif(
+      style: GoogleFonts.roboto(
         color: color,
         fontSize: size,
       ),

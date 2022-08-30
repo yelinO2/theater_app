@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
       title: 'Movie API Demo',
       theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Colors.blue,
       ),
       home: const MyHomePage(),
     );

@@ -57,8 +57,11 @@ class NowPlaying extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ModifiedText(
-                          text: nowPlaying[index]['title'] ?? 'loading',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ModifiedText(
+                            text: nowPlaying[index]['title'] ?? 'loading',
+                          ),
                         )
                       ],
                     ),
