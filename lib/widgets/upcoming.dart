@@ -13,12 +13,12 @@ class UpcomigMovies extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ModifiedText(
-            text: 'Upcoming Movies 🎥',
-            size: 26,
+            text: 'Upcoming Movies 📽 ',
+            size: 24,
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: 300,
+            height: 350,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {

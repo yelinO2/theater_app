@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/widgets/text.dart';
 import 'dart:ui' as ui;
 
-class Description extends StatelessWidget {
+class Description extends StatefulWidget {
   final String name;
   final String description;
   final String posterUrl;
@@ -20,13 +20,40 @@ class Description extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<Description> createState() => _DescriptionState();
+}
+
+class _DescriptionState extends State<Description> {
+  bool rated = false;
+  bool shared = false;
+  bool saved = false;
+
+  rate() {
+    setState(() {
+      rated = !rated;
+    });
+  }
+
+  share() {
+    setState(() {
+      shared = !shared;
+    });
+  }
+
+  save() {
+    setState(() {
+      saved = !saved;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
           Image.network(
-            posterUrl,
+            widget.posterUrl,
             fit: BoxFit.cover,
           ),
           BackdropFilter(
@@ -49,7 +76,7 @@ class Description extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         image: DecorationImage(
-                          image: NetworkImage(posterUrl),
+                          image: NetworkImage(widget.posterUrl),
                           fit: BoxFit.cover,
                         ),
                         boxShadow: const [
@@ -70,18 +97,71 @@ class Description extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: ModifiedText(
-                            text: name,
+                            text: widget.name,
                             size: 28,
                           ),
                         ),
                         ModifiedText(
-                          text: '$rating/10',
+                          text: '${widget.rating}/10',
                           size: 25,
                         ),
                       ],
                     ),
                   ),
-                  ModifiedText(text: description, size: 20),
+                  ModifiedText(text: widget.description, size: 20),
+                  const Padding(padding: EdgeInsets.all(10.0)),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(15.0),
+                            splashFactory: NoSplash.splashFactory,
+                            primary: const Color(0xaa3C3261),
+                            // onPrimary: rated ? Colors.blue : Colors.white,
+                          ),
+                          onPressed: () {
+                            rate();
+                          },
+                          child: rated
+                              ? const ModifiedText(
+                                  text: 'Rate Movie ⭐',
+                                  size: 18,
+                                )
+                              : const ModifiedText(
+                                  text: 'Rate Movie ',
+                                  size: 18,
+                                ),
+                        ),
+                      ),
+                      const Padding(padding: EdgeInsets.all(10)),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(15.0),
+                          splashFactory: NoSplash.splashFactory,
+                          primary: const Color(0xaa3C3261),
+                          onPrimary: shared ? Colors.blue : Colors.white,
+                        ),
+                        onPressed: () {
+                          share();
+                        },
+                        child: const Icon(Icons.share),
+                      ),
+                      const Padding(padding: EdgeInsets.all(10)),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(15.0),
+                          splashFactory: NoSplash.splashFactory,
+                          primary: const Color(0xaa3C3261),
+                          onPrimary: saved ? Colors.blue : Colors.white,
+                        ),
+                        onPressed: () {
+                          save();
+                        },
+                        child: const Icon(Icons.bookmark),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

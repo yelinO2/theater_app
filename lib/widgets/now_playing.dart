@@ -13,12 +13,12 @@ class NowPlaying extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ModifiedText(
-            text: 'Now Playing 🎞️',
-            size: 26,
+            text: 'Now Playing 📽',
+            size: 24,
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: 300,
+            height: 350,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
